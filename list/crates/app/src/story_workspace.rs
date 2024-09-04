@@ -6,14 +6,12 @@ use workspace::TitleBar;
 
 use std::sync::Arc;
 use ui::{
-    button::Button,
     color_picker::{ColorPicker, ColorPickerEvent},
     dock::{DockArea, StackPanel, TabPanel},
     drawer::Drawer,
-    h_flex,
     modal::Modal,
     theme::{ActiveTheme, Colorize as _, Theme},
-    ContextModal, IconName, Root, Sizable,
+    Root, Sizable,
 };
 
 use crate::app_state::AppState;
@@ -33,7 +31,6 @@ pub fn init(_app_state: Arc<AppState>, cx: &mut AppContext) {
 
 pub struct StoryWorkspace {
     dock_area: View<DockArea>,
-    theme_color_picker: View<ColorPicker>,
 }
 
 impl StoryWorkspace {
@@ -114,10 +111,7 @@ impl StoryWorkspace {
         )
         .detach();
 
-        Self {
-            dock_area,
-            theme_color_picker,
-        }
+        Self { dock_area }
     }
 
     pub fn new_local(
@@ -185,7 +179,6 @@ impl Render for StoryWorkspace {
         let active_drawer = Root::read(cx).active_drawer.clone();
         let has_active_modal = active_modal.is_some();
         let notification_view = Root::read(cx).notification.clone();
-        let notifications_count = cx.notifications().len();
 
         div()
             .relative()
@@ -204,16 +197,7 @@ impl Render for StoryWorkspace {
                         })
                     })
                     // left side
-                    .child(div().flex().items_center().child("GPUI App"))
-                    .child(
-                        div()
-                            .flex()
-                            .items_center()
-                            .justify_end()
-                            .px_2()
-                            .gap_2()
-                            .child(self.theme_color_picker.clone()),
-                    ),
+                    .child(div().flex().items_center().child("List Demo")),
             )
             .child(self.dock_area.clone())
             .when(!has_active_modal, |this| {
