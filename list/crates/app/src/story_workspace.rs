@@ -62,7 +62,7 @@ impl StoryWorkspace {
         stack_panel.update(cx, |view, cx| {
             view.add_panel(
                 left_tab_panel.clone(),
-                Some(px(300.)),
+                Some(px(500.)),
                 weak_dock_area.clone(),
                 cx,
             );
