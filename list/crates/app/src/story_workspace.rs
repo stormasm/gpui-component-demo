@@ -6,12 +6,11 @@ use workspace::TitleBar;
 
 use std::sync::Arc;
 use ui::{
-    color_picker::{ColorPicker, ColorPickerEvent},
     dock::{DockArea, StackPanel, TabPanel},
     drawer::Drawer,
     modal::Modal,
-    theme::{ActiveTheme, Colorize as _, Theme},
-    Root, Sizable,
+    theme::{ActiveTheme, Theme},
+    Root,
 };
 
 use crate::app_state::AppState;
@@ -87,31 +86,6 @@ impl StoryWorkspace {
             true,
             cx,
         );
-
-        let theme_color_picker = cx.new_view(|cx| {
-            let mut picker = ColorPicker::new("theme-color-picker", cx)
-                .xsmall()
-                .anchor(AnchorCorner::TopRight)
-                .label("Primary Color");
-            picker.set_value(cx.theme().primary, cx);
-            picker
-        });
-
-        cx.subscribe(
-            &theme_color_picker,
-            |_, _, ev: &ColorPickerEvent, cx| match ev {
-                ColorPickerEvent::Change(color) => {
-                    if let Some(color) = color {
-                        let theme = cx.global_mut::<Theme>();
-                        theme.primary = *color;
-                        theme.primary_hover = color.lighten(0.1);
-                        theme.primary_active = color.darken(0.1);
-                        cx.refresh();
-                    }
-                }
-            },
-        )
-        .detach();
 
         Self { dock_area }
     }
