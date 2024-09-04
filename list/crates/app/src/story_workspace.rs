@@ -48,6 +48,7 @@ impl StoryWorkspace {
             let stack_panel = cx.new_view(|cx| StackPanel::new(Axis::Vertical, cx));
             TabPanel::new(Some(stack_panel), weak_dock_area.clone(), cx)
         });
+
         let left_tab_panel = cx.new_view(|cx| {
             let stack_panel = cx.new_view(|cx| StackPanel::new(Axis::Vertical, cx));
             TabPanel::new(Some(stack_panel), weak_dock_area.clone(), cx)
