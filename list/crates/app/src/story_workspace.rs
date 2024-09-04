@@ -1,11 +1,7 @@
 use gpui::*;
 use prelude::FluentBuilder as _;
 use private::serde::Deserialize;
-use story::{
-    ButtonStory, CalendarStory, DropdownStory, IconStory, ImageStory, InputStory, ListStory,
-    ModalStory, PopupStory, ProgressStory, ResizableStory, ScrollableStory, StoryContainer,
-    SwitchStory, TableStory, TextStory, TooltipStory,
-};
+use story::{ListStory, StoryContainer};
 use workspace::TitleBar;
 
 use std::sync::Arc;
@@ -17,7 +13,7 @@ use ui::{
     h_flex,
     modal::Modal,
     theme::{ActiveTheme, Colorize as _, Theme},
-    ContextModal, IconName, Placement, Root, Sizable,
+    ContextModal, IconName, Root, Sizable,
 };
 
 use crate::app_state::AppState;
@@ -83,184 +79,11 @@ impl StoryWorkspace {
         });
 
         StoryContainer::add_panel(
-            "Buttons",
-            "Displays a button or a component that looks like a button.",
-            ButtonStory::view(cx).into(),
-            center_tab_panel.clone(),
-            None,
-            None,
-            false,
-            cx,
-        );
-
-        StoryContainer::add_panel(
-            "Input",
-            "A control that allows the user to input text.",
-            InputStory::view(cx).into(),
-            center_tab_panel.clone(),
-            None,
-            None,
-            false,
-            cx,
-        );
-
-        StoryContainer::add_panel(
-            "Text",
-            "Links, paragraphs, checkboxes, and more.",
-            TextStory::view(cx).into(),
-            center_tab_panel.clone(),
-            Some(Placement::Bottom),
-            Some(px(200.)),
-            true,
-            cx,
-        );
-
-        StoryContainer::add_panel(
-            "Switch",
-            "A control that allows the user to toggle between two states.",
-            SwitchStory::view(cx).into(),
-            center_tab_panel.clone(),
-            None,
-            None,
-            true,
-            cx,
-        );
-
-        StoryContainer::add_panel(
-            "Dropdowns",
-            "Displays a list of options for the user to pick from—triggered by a button.",
-            DropdownStory::new(cx).into(),
-            center_tab_panel.clone(),
-            None,
-            None,
-            true,
-            cx,
-        );
-
-        StoryContainer::add_panel(
-            "Modal",
-            "Modal & Drawer use examples",
-            ModalStory::view(cx).into(),
-            center_tab_panel.clone(),
-            None,
-            None,
-            true,
-            cx,
-        );
-
-        StoryContainer::add_panel(
-            "Popup",
-            "A popup displays content on top of the main page.",
-            PopupStory::view(cx).into(),
-            center_tab_panel.clone(),
-            None,
-            None,
-            true,
-            cx,
-        );
-
-        StoryContainer::add_panel(
-            "Tooltip",
-            "Displays a short message when users hover over an element.",
-            TooltipStory::view(cx).into(),
-            right_tab_panel.clone(),
-            None,
-            None,
-            true,
-            cx,
-        );
-
-        StoryContainer::add_panel(
             "List",
             "A list displays a series of items.",
             ListStory::view(cx).into(),
             left_tab_panel.clone(),
             None,
-            None,
-            true,
-            cx,
-        );
-
-        StoryContainer::add_panel(
-            "Icon",
-            "Icon use examples",
-            IconStory::view(cx).into(),
-            left_tab_panel.clone(),
-            Some(Placement::Bottom),
-            Some(px(200.)),
-            true,
-            cx,
-        );
-
-        StoryContainer::add_panel(
-            "Image",
-            "Render SVG image and Chart",
-            ImageStory::view(cx).into(),
-            right_tab_panel.clone(),
-            Some(Placement::Bottom),
-            None,
-            true,
-            cx,
-        );
-
-        // StoryContainer::add_panel(
-        //     WebViewStory::view(cx).into(),
-        //     stack_panel.clone(),
-        //     DockPosition::Right,
-        //     px(450.),
-        //     cx,
-        // );
-
-        StoryContainer::add_panel(
-            "Table",
-            "Powerful table and datagrids built.",
-            TableStory::view(cx).into(),
-            center_tab_panel.clone(),
-            None,
-            None,
-            true,
-            cx,
-        );
-
-        StoryContainer::add_panel(
-            "Progress",
-            "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-            ProgressStory::view(cx).into(),
-            center_tab_panel.clone(),
-            Some(Placement::Bottom),
-            Some(px(200.)),
-            true,
-            cx,
-        );
-
-        StoryContainer::add_panel(
-            "Resizable",
-            "Accessible resizable panel groups and layouts with keyboard support.",
-            ResizableStory::view(cx).into(),
-            center_tab_panel.clone(),
-            None,
-            None,
-            true,
-            cx,
-        );
-
-        StoryContainer::add_panel(
-            "Scrollable",
-            "A scrollable area with scroll bar.",
-            ScrollableStory::view(cx).into(),
-            center_tab_panel.clone(),
-            None,
-            None,
-            true,
-            cx,
-        );
-
-        StoryContainer::add_panel(
-            "Calendar",
-            "A calendar component.",
-            CalendarStory::view(cx).into(),
-            right_tab_panel.clone(),
-            Some(Placement::Bottom),
             None,
             true,
             cx,
