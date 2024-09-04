@@ -202,9 +202,7 @@ impl ListStory {
     }
 
     fn new(cx: &mut ViewContext<Self>) -> Self {
-        let companies = (0..1_000)
-            .map(|_| random_company())
-            .collect::<Vec<Company>>();
+        let companies = (0..25).map(|_| random_company()).collect::<Vec<Company>>();
 
         let company_list = cx.new_view(|cx| {
             List::new(
@@ -255,7 +253,7 @@ impl ListStory {
 }
 
 fn random_company() -> Company {
-    let last_done = (0.0..999.0).fake::<f64>();
+    let last_done = (0.0..25.0).fake::<f64>();
     let prev_close = last_done * (-0.1..0.1).fake::<f64>();
     Company {
         name: fake::faker::company::en::CompanyName().fake(),
