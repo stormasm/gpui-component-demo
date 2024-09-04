@@ -1,4 +1,8 @@
-use gpui::{actions, div, px, AppContext, FocusHandle, InteractiveElement, IntoElement, KeyBinding, ParentElement as _, Render, SharedString, Styled, View, ViewContext, VisualContext, WindowContext};
+use gpui::{
+    actions, div, px, AppContext, FocusHandle, InteractiveElement, IntoElement, KeyBinding,
+    ParentElement as _, Render, SharedString, Styled, View, ViewContext, VisualContext,
+    WindowContext,
+};
 
 use crate::section;
 use ui::{
@@ -8,11 +12,7 @@ use ui::{
     input::{InputEvent, OtpInput, TextInput},
     prelude::FluentBuilder as _,
     scroll::ScrollbarAxis,
-    v_flex,
-    FocusableCycle,
-    IconName,
-    Sizable,
-    StyledExt,
+    v_flex, FocusableCycle, IconName, Sizable, StyledExt,
 };
 
 actions!(input_story, [Tab, TabPrev]);
