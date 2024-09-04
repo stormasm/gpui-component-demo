@@ -97,6 +97,7 @@ impl StoryWorkspace {
             picker.set_value(cx.theme().primary, cx);
             picker
         });
+
         cx.subscribe(
             &theme_color_picker,
             |_, _, ev: &ColorPickerEvent, cx| match ev {
@@ -211,64 +212,7 @@ impl Render for StoryWorkspace {
                             .justify_end()
                             .px_2()
                             .gap_2()
-                            .child(self.theme_color_picker.clone())
-                            .child(
-                                Button::new("theme-mode", cx)
-                                    .map(|this| {
-                                        if cx.theme().mode.is_dark() {
-                                            this.icon(IconName::Sun)
-                                        } else {
-                                            this.icon(IconName::Moon)
-                                        }
-                                    })
-                                    .small()
-                                    .ghost()
-                                    .on_click(move |_, cx| {
-                                        let mode = match cx.theme().mode.is_dark() {
-                                            true => ui::theme::ThemeMode::Light,
-                                            false => ui::theme::ThemeMode::Dark,
-                                        };
-
-                                        Theme::change(mode, cx);
-                                    }),
-                            )
-                            .child(
-                                Button::new("github", cx)
-                                    .icon(IconName::GitHub)
-                                    .small()
-                                    .ghost()
-                                    .on_click(|_, cx| {
-                                        cx.open_url("https://github.com/huacnlee/gpui-component")
-                                    }),
-                            )
-                            .child(
-                                div()
-                                    .relative()
-                                    .child(
-                                        Button::new("bell", cx)
-                                            .small()
-                                            .ghost()
-                                            .compact()
-                                            .icon(IconName::Bell),
-                                    )
-                                    .when(notifications_count > 0, |this| {
-                                        this.child(
-                                            h_flex()
-                                                .absolute()
-                                                .rounded_full()
-                                                .top(px(-2.))
-                                                .right(px(-2.))
-                                                .p(px(1.))
-                                                .min_w(px(12.))
-                                                .bg(ui::red_500())
-                                                .text_color(ui::white())
-                                                .justify_center()
-                                                .text_size(px(10.))
-                                                .line_height(relative(1.))
-                                                .child(format!("{}", notifications_count.min(99))),
-                                        )
-                                    }),
-                            ),
+                            .child(self.theme_color_picker.clone()),
                     ),
             )
             .child(self.dock_area.clone())
