@@ -59,6 +59,7 @@ impl StoryWorkspace {
             TabPanel::new(Some(stack_panel), weak_dock_area.clone(), cx)
         });
 
+        // modify the sizes of the panels here
         stack_panel.update(cx, |view, cx| {
             view.add_panel(
                 left_tab_panel.clone(),
